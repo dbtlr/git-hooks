@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Take all the changes and run them through PHP Lint. Let the commit fail if this fails.
+# Ruthlessly stolen from https://github.com/codingjester/git-hooks/blob/master/phplintprecommit
+git diff --cached --name-status | awk '{ if ($1 != "D") print $2}' | grep -e \.php$ | xargs -n1 php -l
+exit $?
