@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Assuming this script lives in $REPODIR/.git/hooks, get the $REPODIR
+REPODIR=$(cd $(dirname "$0")/../..; pwd)
+
+# REMOTEAPPPATH should be defined in your .bash_profile like so: export REMOTEAPPPATH="server:/var/www"
+# Sync the repository path up to a remote directory on merge
+rsync -a --delete --exclude '.git' --exclude 'extras' $REPODIR $REMOTEAPPPATH
